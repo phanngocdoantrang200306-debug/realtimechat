@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RealTime Chat</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="welcome-card" id="welcomeScreen">
+      <div class="brand">
+        <div>
+          <h1>RealTime Chat</h1>
+          <p>Chat cùng nhau. Theo thời gian thực.</p>
+        </div>
+      </div>
+
+      <div class="welcome-copy">
+        <span class="eyebrow">REAL-TIME CHAT ROOMS</span>
+        <h2>Kết nối với nhóm của bạn.</h2>
+      </div>
+
+      <form id="authForm" class="nickname-form">
+      <h3 id="authTitle">Đăng nhập</h3>
+
+      <label for="nickname">Biệt danh</label>
+      <input
+        id="nickname"
+        name="nickname"
+        type="text"
+        minlength="2"
+        maxlength="24"
+        placeholder="Nhập biệt danh"
+        autocomplete="username"
+        required
+      >
+
+      <label for="authPassword">Mật khẩu</label>
+      <input
+        id="authPassword"
+        name="password"
+        type="password"
+        minlength="8"
+        placeholder="Nhập mật khẩu"
+        autocomplete="current-password"
+        required
+      >
+
+      <button class="primary-btn" id="authSubmitBtn" type="submit">
+        Đăng nhập
+      </button>
+
+      <button class="ghost-btn" id="authToggleBtn" type="button">
+        Chưa có tài khoản? Đăng ký
+      </button>
+    </form>
+    </section>
+
+    <section class="lobby hidden" id="lobbyScreen">
+      <header class="topbar">
+        <div class="brand compact">
+          <div>
+            <h1>RealTime Chat</h1>
+            <p id="welcomeUser"></p>
+          </div>
+        </div>
+        <button class="ghost-btn" id="changeUserBtn" type="button">
+          Đăng xuất
+        </button>
+      </header>
+
+      <div class="lobby-content">
+        <div class="section-heading">
+          <div>
+            <h2>Chọn một phòng để tham gia</h2>
+            <p>Tham gia cuộc trò chuyện hoặc tạo phòng mới cho nhóm của bạn.</p>
+          </div>
+          <button class="primary-btn" id="createRoomBtn">＋ Tạo phòng</button>
+        </div>
+
+        <div class="room-grid" id="roomGrid"></div>
+      </div>
+    </section>
+
+    <section class="chat-screen hidden" id="chatScreen">
+      <header class="chat-header">
+        <button class="icon-btn" id="backLobbyBtn" aria-label="Quay lại lobby">←</button>
+        <div class="room-title">
+          <div class="room-avatar" id="roomAvatar">#</div>
+          <div>
+            <h2 id="chatRoomName">Room</h2>
+            <p id="chatRoomMeta">0 người online</p>
+          </div>
+        </div>
+        <div class="connection-state">
+          <span class="status-dot" id="connectionDot"></span>
+          <span id="connectionText">Demo mode</span>
+        </div>
+      </header>
+
+      <div class="chat-layout">
+        <aside class="members-panel">
+          <div class="panel-title">
+            <span>Thành viên</span>
+            <span class="count-badge" id="memberCount">0</span>
+          </div>
+          <div class="member-list" id="memberList"></div>
+        </aside>
+
+        <section class="conversation">
+          <div class="message-list" id="messageList"></div>
+          <div class="typing-indicator" id="typingIndicator"></div>
+          <form class="message-form" id="messageForm">
+            <input id="messageInput" type="text" maxlength="1000"
+                   placeholder="Nhập tin nhắn..." autocomplete="off">
+            <button class="send-btn" type="submit" aria-label="Gửi tin nhắn">➤</button>
+          </form>
+          <div class="chat-hint">Enter để gửi · WebSocket sẽ xử lý real-time ở backend</div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="roomModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModalBtn">×</button>
+      <span class="eyebrow">NEW ROOM</span>
+      <h2>Tạo phòng chat</h2>
+      <p>Tạo một không gian riêng cho nhóm học tập của bạn.</p>
+
+      <form id="createRoomForm">
+        <label for="roomName">Tên phòng</label>
+        <input id="roomName" maxlength="40" placeholder="Ví dụ: Nhóm WebSocket" required>
+
+        <label class="checkbox-row">
+          <input id="privateRoom" type="checkbox">
+          <span>Phòng riêng có mật khẩu</span>
+        </label>
+
+        <div id="passwordField" class="hidden">
+          <label for="roomPassword">Mật khẩu</label>
+          <input id="roomPassword" type="password" maxlength="40" placeholder="Nhập mật khẩu">
+        </div>
+
+        <button class="primary-btn full" type="submit">Tạo phòng</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
