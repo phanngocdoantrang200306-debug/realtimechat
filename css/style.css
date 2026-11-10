@@ -333,79 +333,85 @@ input:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(21,154,131,.
 }
 
 
-/* =====================================
-   CHAT BUBBLE STYLE - MESSENGER
-   ===================================== */
 
-/* Mỗi tin nhắn chỉ chiếm phần cần thiết */
+/* ===== CHAT BUBBLE FIX ===== */
+
 .message {
     display: flex;
-    gap: 10px;
-    width: fit-content;
-    max-width: min(75%, 640px);
-    margin-bottom: 14px;
     align-items: flex-end;
+    gap: 8px;
+    width: fit-content;
+    max-width: 80%;
+    margin-bottom: 16px;
 }
 
-/* Tin nhắn của mình nằm bên phải */
 .message.mine {
     margin-left: auto;
     flex-direction: row-reverse;
 }
 
-/* Nội dung tin nhắn */
+.message .avatar {
+    flex-shrink: 0;
+}
+
 .message-body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
     min-width: 0;
+    max-width: 100%;
 }
 
-/* Bong bóng co theo độ dài chữ */
+.message.mine .message-body {
+    align-items: flex-end;
+}
+
 .bubble {
-    display: inline-block;
+    display: block;
     width: fit-content;
     max-width: 100%;
-    padding: 10px 14px;
+    min-width: 0;
+    height: auto;
 
-    background: #e5e7eb;
-    color: #111827;
+    padding: 9px 13px;
+    margin: 0;
 
-    border-radius: 18px 18px 18px 5px;
+    background: #eef8f5;
+    color: #16312c;
+
+    border-radius: 16px 16px 16px 5px;
 
     font-size: 14px;
     line-height: 1.45;
+    text-align: left;
 
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }
 
-/* Tin nhắn của mình */
-.message.mine .message-body {
-    align-items: flex-end;
-}
-
 .message.mine .bubble {
     background: #159a83;
-    color: white;
-    border-radius: 18px 18px 5px 18px;
+    color: #ffffff;
+    border-radius: 16px 16px 5px 16px;
 }
 
-/* Tên người gửi và thời gian */
 .message-meta {
     font-size: 11px;
-    color: #8b9299;
+    color: #75908a;
 }
 
-/* Trên điện thoại */
+.message-actions {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-top: 3px;
+}
+
 @media (max-width: 600px) {
     .message {
-        max-width: 85%;
-    }
-
-    .bubble {
-        font-size: 14px;
-        padding: 9px 12px;
+        max-width: 90%;
     }
 }
+
+
