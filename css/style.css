@@ -331,3 +331,81 @@ input:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(21,154,131,.
 .typing-indicator.show {
     opacity: 1;
 }
+
+
+/* =====================================
+   CHAT BUBBLE STYLE - MESSENGER
+   ===================================== */
+
+/* Mỗi tin nhắn chỉ chiếm phần cần thiết */
+.message {
+    display: flex;
+    gap: 10px;
+    width: fit-content;
+    max-width: min(75%, 640px);
+    margin-bottom: 14px;
+    align-items: flex-end;
+}
+
+/* Tin nhắn của mình nằm bên phải */
+.message.mine {
+    margin-left: auto;
+    flex-direction: row-reverse;
+}
+
+/* Nội dung tin nhắn */
+.message-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 0;
+}
+
+/* Bong bóng co theo độ dài chữ */
+.bubble {
+    display: inline-block;
+    width: fit-content;
+    max-width: 100%;
+    padding: 10px 14px;
+
+    background: #e5e7eb;
+    color: #111827;
+
+    border-radius: 18px 18px 18px 5px;
+
+    font-size: 14px;
+    line-height: 1.45;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+/* Tin nhắn của mình */
+.message.mine .message-body {
+    align-items: flex-end;
+}
+
+.message.mine .bubble {
+    background: #159a83;
+    color: white;
+    border-radius: 18px 18px 5px 18px;
+}
+
+/* Tên người gửi và thời gian */
+.message-meta {
+    font-size: 11px;
+    color: #8b9299;
+}
+
+/* Trên điện thoại */
+@media (max-width: 600px) {
+    .message {
+        max-width: 85%;
+    }
+
+    .bubble {
+        font-size: 14px;
+        padding: 9px 12px;
+    }
+}
