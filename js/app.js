@@ -602,9 +602,7 @@ function renderMessages() {
                         ${message.edited ? " · Đã chỉnh sửa" : ""}
                     </div>
 
-                    <div class="bubble">
-                        ${escapeHtml(message.text)}
-                    </div>
+                    <div class="bubble">${escapeHtml(message.text)}</div>
 
                     ${mine && message.id != null ? `
                         <div class="message-actions">
